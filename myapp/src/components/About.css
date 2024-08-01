@@ -1,0 +1,84 @@
+.about-container{
+    box-shadow: inset 0 0 0 1000px rgba(0, 0, 0, 0.5);
+    width: 100%;
+    height: auto;
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+
+.about-container > h1{
+    margin-top: 10%;
+    margin-left: 10%;
+    color: white;
+    font-size: 50px;
+    text-align: left;
+}
+
+.about-container >hr{
+    margin-top: 20px;
+    margin-left: 10%;
+    width: 60%;
+    border-top: 1px;
+    opacity: .25;
+}
+
+.about-card{
+    box-shadow: inset 0 0 0 1000px rgba(174, 36, 75, 0.9);
+    margin-top: 40px;
+    margin-left: 10%;
+    width: 80%;
+    border-radius: 10px;
+    display: flex;
+    padding: 25px;
+    font-size: 17px;
+}
+
+.about-card > h2{
+    position: relative;
+    color: white;
+}
+
+.about-card > p{
+    position: relative;
+    color: white;
+    margin-left:21%;
+}
+
+.about-card >tr{
+    color: white;
+    margin-left: 22%;
+}
+
+.about-small-card{
+    box-shadow: inset 0 0 0 1000px rgba(30, 6, 13, 0.9);
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+}
+
+.edu{
+    margin-left:4%;
+}
+.skill{
+    margin-left:8%;
+}
+
+.about-small-card >p{
+    color: white;
+}
+.about-small-card >h3{
+    color: white;
+}
+
+.about-card table th, .about-card table td{
+    color: white;
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid white;
+}
+
+
+.about-card table{
+    margin-left:15%;
+}
