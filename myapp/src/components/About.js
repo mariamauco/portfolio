@@ -15,9 +15,14 @@ function About(){
                 <table>
                     <tbody className='experiencetable'>
                         <tr>
+                            <th>WiSTEM Mentor</th>
+                            <td>University of Central Florida</td>
+                            <td>Aug 2024 - Present</td>
+                        </tr>
+                        <tr>
                             <th>Headstarter AI Fellow</th>
                             <td>Headstarter</td>
-                            <td>June 2024 - Preseent</td>
+                            <td>June 2024 - Present</td>
                         </tr>
                         <tr>
                             <th>Computer Science Teaching Assistant</th>
@@ -50,7 +55,7 @@ function About(){
                 <div className='about-small-card skill'>
                     <h3>Skills</h3>
                     <p>Languages: Python, Java, C, Javascript</p>
-                    <p>Technologies and Toops: React, NodeJS, Git</p>
+                    <p>Technologies and Tools: React, NodeJS, Git</p>
                 </div>
             </div>
         </div>
