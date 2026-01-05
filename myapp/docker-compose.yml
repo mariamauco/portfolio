@@ -1,22 +1,29 @@
 version: '3.8'
 
 services:
-  # Development service
+  # Development Service (Run this locally or when debugging)
   web-dev:
     build:
       context: .
-      target: dev # Use the dev stage from the Dockerfile
+      target: dev
+    # Map to a different port (e.g., 3001) to avoid conflict with prod
     ports:
-      - "3000:3000" # Map port 3000 for development
+      - "3001:3000" 
     volumes:
-      - .:/app # Mount the source code for hot-reloading
+      - .:/app
     environment:
-      - CHOKIDAR_USEPOLLING=true # Enable polling for file changes in dev mode
+      - CHOKIDAR_USEPOLLING=true
+    # Do not auto-restart dev; we want to see errors immediately
+    restart: no 
 
-  # Production service
+  # Production Service (Run this on 'jewellbase')
   web-prod:
     build:
       context: .
-      target: prod # Use the prod stage from the Dockerfile
+      target: prod
     ports:
-      - "3000:3000" # Map port 3000 for production
+      - "3000:3000"
+    # This replaces PM2! Docker will automatically restart the app if it crashes or the server reboots.
+    restart: always 
+    environment:
+      - NODE_ENV=production
