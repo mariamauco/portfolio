@@ -18,6 +18,7 @@ services:
 
   # Production Service (Run this on 'jewellbase')
   web-prod:
+    container_name: portfolio
     build:
       context: .
       target: prod
