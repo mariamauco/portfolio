@@ -1,26 +1,44 @@
-import React from 'react';
-import './Cards.css';
-import CardItem from './CardItem';
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
+import CardMedia from '@mui/material/CardMedia';
+import Typography from '@mui/material/Typography';
+import CardActionArea from '@mui/material/CardActionArea';
 
-function Cards(){
-    return(
-        <div id='projects' className='cards'>
-            <h1>My Projects</h1>
-            <hr/>
-            <div className='cards__container'>
-                <div className='cards__wrapper'>
-                    <ul className='cards__item'>
-                        <CardItem 
-                        src='images/sc.png'
-                        text= 'My Portfolio (This website)'
-                        label= 'React, NodeJS, HTML, CSS'
-                        path= '/'
-                        />
-                    </ul>
-                </div>
-            </div>
-        </div>
+export  function ProjectCard({ image, title, description }) {
+    return (
+        <Card sx={{  }}>
+            <CardActionArea>
+                <CardMedia
+                    component="img"
+                    height="140"
+                    image={(image)}
+                    alt={title}
+                />
+                <CardContent>
+                    <Typography gutterBottom variant="h5" component="div">
+                        {title}
+                    </Typography>
+                    <Typography variant="body2" sx={{ color: 'text.secondary' }}>
+                        {description}
+                    </Typography>
+                </CardContent>
+            </CardActionArea>
+        </Card>
     );
-
 }
-export default Cards;
+
+export function StackCard({ icon, name }) {
+    return (
+        <Card sx={{ height:'80px',border:'1px solid #b7b7b7ff',display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+            <CardActionArea sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                <CardContent sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', textAlign: 'center' }}>
+                    {icon}
+                    <Typography variant="body2" sx={{ mt:1, color: 'text.secondary' }}>
+                        {name}
+                    </Typography>
+                </CardContent>
+            </CardActionArea>
+        </Card>
+    );
+}
+

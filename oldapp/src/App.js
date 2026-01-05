@@ -2,24 +2,20 @@ import React from 'react';
 import NavBar from './components/NavBar';
 import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 import Home from './components/pages/Home';
-//import './App.css';
+import './App.css';
 import { Typed } from 'react-typed';
-import { ThemeProvider } from '@mui/material/styles'
-import { theme } from './components/styles'
 
 function App() {
   return (
-    <ThemeProvider theme={theme}>
     <>
     <Router>
-      {/* <NavBar/> */}
+      <NavBar/>
       <Routes>
         <Route path='/' exact element={<Home/>} />
       </Routes>
     </Router>
       
     </>
-    </ThemeProvider>
   );
 }
 
