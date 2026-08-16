@@ -6,6 +6,8 @@ import Home from './components/pages/Home';
 import { Typed } from 'react-typed';
 import { ThemeProvider } from '@mui/material/styles'
 import { theme } from './components/styles'
+import Visitors from './components/pages/Visitors';
+import Fosters from './components/pages/Fosters';
 
 function App() {
   return (
@@ -15,6 +17,8 @@ function App() {
       {/* <NavBar/> */}
       <Routes>
         <Route path='/' exact element={<Home/>} />
+        <Route path='/visitors' exact element={<Visitors/>}/>
+        <Route path='/fosters' exact element={<Fosters/>}/>
       </Routes>
     </Router>
       

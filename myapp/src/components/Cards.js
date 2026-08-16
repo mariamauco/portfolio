@@ -24,7 +24,7 @@ export function ExperienceCard({image, company, title, location, dates, descript
                 <Box sx={{ position: 'relative' }}>
                     <CardMedia
                         component="img"
-                        height="240"
+                        height="280"
                         image={image}
                         alt={title}
                         sx={{ display: 'block', objectFit: 'cover' }}
@@ -99,7 +99,7 @@ export function ProjectCard({ image, title, description }) {
             <CardActionArea>
                 <CardMedia
                     component="img"
-                    height="140"
+                    height="200"
                     image={(image)}
                     alt={title}
                 />

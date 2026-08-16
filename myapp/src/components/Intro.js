@@ -22,7 +22,7 @@ export default function Intro(){
       // Hi my Name is maria
       
       // profile, desc, and  stack
-      <Container sx={{  mt:5, width:1/2, position: 'relative', zIndex: 1 }}>
+      <Container sx={{  mt:'120px', width:1/2, position: 'relative', zIndex: 1 }}>
           {/* Title */}
             <Typography
               variant="h3"
@@ -82,7 +82,7 @@ export default function Intro(){
                               color: `${theme.palette.text.primary}`,
                               textAlign: { xs: 'center', md: 'justify' },
                           }}
-                          >I specialize in building seamless AI and automation solutions. Basically, I rack up a high screen time solving puzzles so that you and your systems don't have to.</Typography>
+                          >I specialize in building seamless AI and automation solutions. Simply, I rack up a high screen time solving puzzles so that you and your systems don't have to.</Typography>
 
                         {/* Buttons */}
                         <Box
@@ -129,13 +129,13 @@ export default function Intro(){
         />
       </Typography>
       
-      <Button
+      {/* <Button
         variant="outlined"
         onClick={() => setModalOpen(true)}
         sx={{ ...buttonStyle, width: '100%', mt:3 }}
       >
         Contact Me
-      </Button>
+      </Button> */}
 
       <MessageMe open={modalOpen} onClose={() => setModalOpen(false)} />
 

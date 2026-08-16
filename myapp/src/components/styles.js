@@ -11,29 +11,30 @@ import {
 import { createTheme } from '@mui/material/styles'
 
 export const theme = createTheme({
-        // In your theme setup
-    typography: {
+  // In your theme setup
+  typography: {
+    fontFamily: 'Space Grotesk, sans-serif',
+    h3: {
         fontFamily: 'Space Grotesk, sans-serif',
-        h3: {
-            fontFamily: 'Space Grotesk, sans-serif',
-        },
-        code: {
-            fontFamily: 'Fira Code, monospace',
-        }
     },
-    palette: {
-        mode: 'light',
-        primary: {
-        main: '#a9eb8b',
-        },
-        secondary: {
-        main: '#dea3f9',
-        },
-        text: {
-        primary: '#434941ff',
-        secondary: '#5b545eff',
-        faint:'#838782ff'
-        },
+    code: {
+        fontFamily: 'Fira Code, monospace',
+    }
+  },
+  palette: {
+    mode: 'light',
+    primary: {
+      main: '#a9eb8b',
+      secondary: '#88b174'
+    },
+    secondary: {
+    main: '#dea3f9',
+    },
+    text: {
+    primary: '#434941ff',
+    secondary: '#5b545eff',
+    faint:'#838782ff'
+    },
   },
 })
 

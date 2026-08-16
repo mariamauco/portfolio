@@ -16,13 +16,14 @@ export default function Projects(){
     const theme = useTheme()
 
         const projects = [
-            { id: 1, image: require('../imgs/EcosorterHome.png'), title: 'EcoSorter', description: 'Waste sorting app that detects objects, classifes them, and informs you on the best way to recycle them' },
-            { id: 2, image: require('../imgs/RERASSOR.jpg'), title: 'RE-RASSOR', description: 'Modernized FSI\'s RE-RASSOR rover by migrating to a modular, wireless stack using ROS 2 and Raspberry Pi 5. Engineered a React Native interface for dual control of the rover-arm system.' },
+            { id: 1, image: require('../imgs/digitalwardrobe.jpg'), title: 'Fitly', description: 'I guided a team to build a digital wardrobe app that generates personalized, weather-conscious outfit recommendations. This project sparked a passion for dev-ops and homelabbing.' },
+            { id: 2, image: require('../imgs/EcosorterHome.png'), title: 'EcoSorter', description: 'Waste sorting app that detects objects, classifes them, and informs you on the best way to recycle them.' },
+            { id: 3, image: require('../imgs/RERASSOR.jpg'), title: 'RE-RASSOR', description: 'Led my Senior Design team to build an autonomous rover-arm coordination system. It was a great to get hands-on embedded engineering experience and support Florida Space Institute\'s mission.' },
             // { id: 3, image: 'project3.jpg', title: 'Project 3', description: 'Description for project 3' },
         ];
 
         return (
-            <Container sx={{  mt:10, width:1/2, position: 'relative', zIndex: 1 }}>
+            <Container id="projects" sx={{  mt:10, width:1/2, position: 'relative', zIndex: 1 }}>
                 <Typography variant="h3" sx={{ 
                 fontWeight: 400,
                   fontSize: '30px',
