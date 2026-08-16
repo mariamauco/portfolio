@@ -12,103 +12,12 @@ import {
 import { ReactTyped } from 'react-typed';
 import { useTheme } from '@mui/material/styles';
 import emailjs from 'emailjs-com'; // Import EmailJS
+import MessageMe from './MessageMe';
 
 export default function Intro(){
+
+  const [modalOpen, setModalOpen] = useState(false);
   const theme = useTheme()
-  const [anchorEl, setAnchorEl] = useState(null); // State to control popover visibility
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    message: 'Hey Maria! I want to discuss...',
-  }); // State to store form data
-  const handleOpen = (event) => {
-    if (!anchorEl) setAnchorEl(event.currentTarget); // Open popover only if it's not already open
-  };
-  const handleClose = () => setAnchorEl(null); // Close popover
-  const open = Boolean(anchorEl); // Check if popover is open= () => setOpen(false); // close modal
-
-    // Handle form input changes
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
-  };
-
-  // Handle form submission
-  const handleSend = () => {
-    const serviceID = 'service_uatiob5';
-    const templateID = 'template_rifirai';
-    const publicKey = 'RWUVL4-2mBqWPUpPU';
-
-    emailjs
-      .send(serviceID, templateID, formData, publicKey)
-      .then((response) => {
-        console.log('SUCCESS!', response.status, response.text);
-        handleClose(); // close the popover
-      })
-      .catch((err) => {
-        console.error('FAILED...', err);
-        alert('Failed to send message. Please try again.');
-      });
-  };
-
-  function Modal(){
-    return(
-  <Popover
-      open={open}
-      anchorEl={anchorEl}
-      onClose={handleClose}
-      anchorOrigin={{
-        vertical: 'center',
-        horizontal: 'right',
-      }}
-      transformOrigin={{
-        vertical: 'center',
-        horizontal: 'left',
-      }}
-    >
-      <Box sx={{ p: 2, display: 'flex', flexDirection: 'column', gap: 2, width: '300px' }}>
-        <Typography sx={{fontWeight:600, fontSize:'18px'}}>Send a message</Typography>
-        <Typography sx={{fontSize:'14px', textAlign: { xs: 'center', md: 'justify' },}}>Whether you want to collaborate on a project, need help solving a problem, or want to talk tech, reach out by sending a message. Let's take your ideas to the next level!</Typography>
-        <TextField  
-          size='small' 
-          label="Name"
-          name="name"
-          value={formData.name}
-          onChange={handleChange}  
-          variant="outlined" 
-          fullWidth />
-        <TextField
-          size="small"
-          label="Email"
-          name="email"
-          value={formData.email}
-          onChange={handleChange}
-          variant="outlined"
-          fullWidth />
-        <TextField
-          label="Message"
-          name="message"
-          value={formData.message}
-          onChange={handleChange}
-          variant="outlined"
-          fullWidth
-          multiline
-          rows={4}
-          defaultValue="Hey Maria! I want to discuss..."
-        />
-        <Box sx={{ display: 'flex', justifyContent: 'flex-end', gap: 1 }}>
-      <Button onClick={handleClose} color="secondary">
-        Cancel
-      </Button>
-      <Button variant="contained" color="primary" onClick={handleSend}>
-        Send
-      </Button>
-        </Box>
-      </Box>
-    </Popover>
-    )
-  }
-
   return(
       // Hi my Name is maria
       
@@ -193,7 +102,8 @@ export default function Intro(){
                               Explore Projects
                             </Button>
                           </Box>
-                          <Button variant="outlined" onClick={handleOpen} sx={{ ...buttonStyle, width: '100%' }}>
+                          <Button variant="outlined" onClick={() => setModalOpen(true)}
+                            sx={{ ...buttonStyle, width: '100%' }}>
                             Contact Me
                           </Button>
                         </Box>
@@ -218,13 +128,17 @@ export default function Intro(){
           loop
         />
       </Typography>
+      
+      <Button
+        variant="outlined"
+        onClick={() => setModalOpen(true)}
+        sx={{ ...buttonStyle, width: '100%', mt:3 }}
+      >
+        Contact Me
+      </Button>
 
-      {/* Modal */}
-      <Box sx={{}}>
-        <Modal/>
-      </Box>
-      
-      
+      <MessageMe open={modalOpen} onClose={() => setModalOpen(false)} />
+
     </Container>
   )
 }

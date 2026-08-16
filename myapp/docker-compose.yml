@@ -14,7 +14,7 @@ services:
     environment:
       - CHOKIDAR_USEPOLLING=true
     # Do not auto-restart dev; we want to see errors immediately
-    restart: no 
+    restart: "no" 
 
   # Production Service (Run this on 'jewellbase')
   web-prod:
