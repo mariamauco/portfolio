@@ -26,28 +26,16 @@ export default function NavBar(){
       navigate(`/${label}`);
       return;
     }
-
-    if (label === 'home-top') {
-      if (location.pathname !== '/') {
-        navigate('/', { state: { scrollTo: 'home-top' } });
-        return;
-      }
-
-      scrollToSection('home-top');
-      return;
-    }
-
     if (location.pathname !== '/') {
       navigate('/', { state: { scrollTo: label } });
       return;
     }
-
     scrollToSection(label);
   };
 
   useEffect(() => {
     const updateCollapse = () => {
-      setCollapse(window.innerWidth < 1380);
+      setCollapse(window.innerWidth < 700);
     };
 
     updateCollapse();
@@ -106,7 +94,7 @@ export default function NavBar(){
 
 
 
-        width: 1/2,
+        width: '900px',
         mx: 'auto',
         mt: 2,
         px: 2,
@@ -143,15 +131,15 @@ export default function NavBar(){
           overflow: 'hidden',
         }}
       >
+        
         {/* box where we are */}
-        {!collapse && (
-          <Box
+        <Box
             sx={{
               width: '130px',
               height: '60%',
               borderRadius: 100,
               position: 'absolute',
-              left: 8, // Adjust to align with "Maria M"
+              left: 8, // Adjust to align with "Maria"
               top: '50%',
               transform: 'translateY(-50%)',
               border: '2px rgba(196.11, 208.82, 199.71, 0.25) solid',
@@ -159,7 +147,8 @@ export default function NavBar(){
               boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.8)',
               zIndex: 0,
               }}/>
-        )}
+        
+          
         {/* Wording inside bar */}
         <Box
           sx={{

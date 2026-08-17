@@ -26,7 +26,7 @@ export default function Experiences(){
 
 
     return (
-        <Container id="experiences" sx={{  mt:10, width:1/2, position: 'relative', zIndex: 1 }}>
+        <Container id="experiences" sx={{  mt:10, width:'900px', position: 'relative', zIndex: 1 }}>
             <Typography variant="h3" sx={{ 
                 fontWeight: 400,
                 

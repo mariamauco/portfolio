@@ -22,7 +22,7 @@ export default function Intro(){
       // Hi my Name is maria
       
       // profile, desc, and  stack
-      <Container sx={{  mt:'120px', width:1/2, position: 'relative', zIndex: 1 }}>
+      <Container sx={{  mt:'120px', width:'980px', position: 'relative', zIndex: 1}}>
           {/* Title */}
             <Typography
               variant="h3"
@@ -32,14 +32,14 @@ export default function Intro(){
                 lineHeight: '48px',
                 color: `${theme.palette.text.primary}`,
                 textAlign: { xs: 'center', md: 'left' },
-                mt:3
+                mt:3, ml:5
               }}
             >
               Hi, I'm <strong>Maria</strong>!
             </Typography>
-      <Grid container spacing={4} alignItems="center" sx={{ minHeight: '400px' }}>
+      <Grid container spacing={0} alignItems="center" sx={{ minHeight: '400px', justifyContent:'center', alignItems:'center', gap:6, width: '100%' }}>
 
-                <Grid item xs={12} md={6} sx={{ display: 'flex', justifyContent: 'center' }}>
+            <Grid item xs="auto" sx={{ display: 'flex', justifyContent: 'center', alignItems:'center' }}>
                   <Box
                     sx={{
                       width: '300px',
@@ -52,7 +52,6 @@ export default function Intro(){
                       alignItems: 'center',
                       justifyContent: 'center',
                       flexShrink: 0,
-                      mr: 5,
                       overflow: 'hidden', // Ensure the image doesn't overflow the box
                     }}
                   >
@@ -80,9 +79,9 @@ export default function Intro(){
                               fontSize: '18px',
                               lineHeight: '23px',
                               color: `${theme.palette.text.primary}`,
-                              textAlign: { xs: 'center', md: 'justify' },
+                              textAlign: { xs: 'center', md: 'justify'},
                           }}
-                          >I specialize in building seamless AI and automation solutions. Simply, I rack up a high screen time solving puzzles so that you and your systems don't have to.</Typography>
+                          >I specialize in building seamless AI and automation solutions. Simply, I spend too much time infront of a screen solvig problems so that you and your systems don't have to.</Typography>
 
                         {/* Buttons */}
                         <Box
@@ -118,7 +117,7 @@ export default function Intro(){
           fontSize: '40px',
           lineHeight: '48px',
           color: `${theme.palette.text.primary}`,
-          textAlign: { xs: 'center', md: 'left' },
+          textAlign: { xs: 'center', md: 'left' }, ml:5
         }}
       >
         <ReactTyped

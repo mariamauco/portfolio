@@ -74,7 +74,7 @@ export function ExperienceCard({image, company, title, location, dates, descript
                                         backgroundColor: 'rgba(154, 210, 157, 0.14)',
                                         color: 'rgba(28, 36, 28, 0.93)',
                                         border: `2px solid ${theme.palette.primary.main}`,
-                                        fontSize: '0.65rem',
+                                        fontSize: '0.77rem',
                                         fontFamily:theme.typography.fontFamily,
                                         lineHeight: 1,
                                         display: 'inline-flex',
@@ -99,7 +99,7 @@ export function ProjectCard({ image, title, description }) {
             <CardActionArea>
                 <CardMedia
                     component="img"
-                    height="200"
+                    height="220"
                     image={(image)}
                     alt={title}
                 />

@@ -98,7 +98,7 @@ const techStack = [
 export default function Stacks(){
     const theme = useTheme();
     return(
-        <Container sx={{  mt:10, width:1/2, position: 'relative', zIndex: 1 }}>
+        <Container sx={{  mt:10, alignContent:'center',width:'900px', position: 'relative', zIndex: 1 }}>
             <Typography variant="h3" sx={{ 
                 fontWeight: 400,
                     fontSize: '30px',
@@ -107,9 +107,9 @@ export default function Stacks(){
                     textAlign: { xs: 'center', md: 'left' },
                     mb:3
             }}>technologies</Typography>
-            <Grid container spacing={3}>
+            <Grid container spacing={3}  alignContent='center' justifyContent='center'>
                 {techStack.map((tech, index) => (
-                    <Grid item xs={12} sm={6} md={2.3} key={index}>
+                    <Grid item xs={12} sm={6} md={2.4} key={index} sx={{alignContent:'center'}}>
                         <StackCard icon={tech.icon} name={tech.name} />
                     </Grid>
                 ))}
