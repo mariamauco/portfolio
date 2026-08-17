@@ -163,7 +163,7 @@ export default function NavBar(){
         >
           {/* Name */}
           <Box
-            onClick={() => scrollToSection('home-top')}
+            onClick={() => handleNavClick('home-top')}
             sx={{ display: 'flex', alignItems: 'center', gap: 1, flexShrink: 0, cursor: 'pointer' }}
           >
             <img src={require('../imgs/my-notion-face-transparent.png')}
