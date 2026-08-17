@@ -23,7 +23,8 @@ export default function Projects(){
         ];
 
         return (
-            <Container id="projects" sx={{  mt:10, width:'900px', position: 'relative', zIndex: 1 }}>
+            <Container id="projects" maxWidth={false}
+                    sx={{ mt: 10, width: '100%', maxWidth: '900px', position: 'relative', zIndex: 1 }}>
                 <Typography variant="h3" sx={{ 
                 fontWeight: 400,
                   fontSize: '30px',

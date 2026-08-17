@@ -52,9 +52,9 @@ export default function Home() {
       <NavBar/>
 
       {/* INTRODUCTION */}
-      <Box id="home-top" sx={{ width: '100%' }}>
-        <Intro/>
-      </Box>
+      <Container id="home-top" sx={{  }}>
+        <Intro id="home-top"/>
+      </Container>
 
       {/* STACKS */}
       <Stacks/>

@@ -92,9 +92,9 @@ export default function NavBar(){
         transform: isHidden ? 'translateY(-150%)' : 'translateY(0)', // slides up or shows if scroll
         transition: 'transform 0.3s ease-in-out', // smooth animation
 
-
-
-        width: '900px',
+        
+        width: '90%',
+        maxWidth: '900px',
         mx: 'auto',
         mt: 2,
         px: 2,

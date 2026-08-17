@@ -98,7 +98,7 @@ const techStack = [
 export default function Stacks(){
     const theme = useTheme();
     return(
-        <Container sx={{  mt:10, alignContent:'center',width:'900px', position: 'relative', zIndex: 1 }}>
+        <Container maxWidth={false} sx={{  mt:10, alignContent:'center',width: '90%', maxWidth: '900px', position: 'relative', zIndex: 1 }}>
             <Typography variant="h3" sx={{ 
                 fontWeight: 400,
                     fontSize: '30px',

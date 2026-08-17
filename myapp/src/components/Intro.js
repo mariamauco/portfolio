@@ -22,7 +22,7 @@ export default function Intro(){
       // Hi my Name is maria
       
       // profile, desc, and  stack
-      <Container sx={{  mt:'120px', width:'980px', position: 'relative', zIndex: 1}}>
+      <Container sx={{  mt:'120px', width: '90%', maxWidth: '980px', position: 'relative', zIndex: 1}}>
           {/* Title */}
             <Typography
               variant="h3"

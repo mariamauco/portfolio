@@ -25,8 +25,12 @@ export default function Experiences(){
         ];
 
 
-    return (
-        <Container id="experiences" sx={{  mt:10, width:'900px', position: 'relative', zIndex: 1 }}>
+        return (
+                <Container
+                    id="experiences"
+                    maxWidth={false}
+                    sx={{ mt: 10, width: '100%', maxWidth: '900px', mx: 'auto', position: 'relative', zIndex: 1 }}
+                >
             <Typography variant="h3" sx={{ 
                 fontWeight: 400,
                 
