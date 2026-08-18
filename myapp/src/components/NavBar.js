@@ -4,8 +4,11 @@ import { SiGithub } from '@icons-pack/react-simple-icons';
 import { useTheme } from '@emotion/react';
 import { useLocation, useNavigate } from 'react-router-dom';
 
-export default function NavBar(){
+export default function NavBar({ onMenuSpacerChange }){
   const [collapse, setCollapse] = useState(false);
+  const [openMenu, setOpenMenu] = useState(false);
+  const [isAtTop, setIsAtTop] = useState(true);
+  const openMenuRef = useRef(openMenu);
   const links = ['experiences','projects', 'visitors', 'fosters']
   const [progress, setProgress] = React.useState(1)
   const theme = useTheme();
@@ -61,11 +64,21 @@ export default function NavBar(){
   const lastScrollY = useRef(0);
 
   useEffect(() => {
+    openMenuRef.current = openMenu;
+  }, [openMenu]);
+
+  useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
+      const atTop = currentScrollY < 20;
+
+      setIsAtTop(atTop);
 
       if (currentScrollY > lastScrollY.current && currentScrollY > 50){
+        if (openMenuRef.current)
+          setOpenMenu(false);
         setIsHidden(true);
+        
       }
       else if(currentScrollY < lastScrollY.current){
         setIsHidden(false);
@@ -78,6 +91,12 @@ export default function NavBar(){
 
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  useEffect(() => {
+    const menuSpacerHeight = openMenu && collapse && isAtTop ? 170 : 0;
+
+    onMenuSpacerChange?.(menuSpacerHeight);
+  }, [openMenu, collapse, isAtTop, onMenuSpacerChange]);
 
 
   return(
@@ -120,6 +139,7 @@ export default function NavBar(){
       <Box
         sx={{
           height: 60,
+          width:'90%',
           borderRadius: 3,
           boxShadow: '0 6px 12px rgba(136.24, 162.24, 143.60, 0.25)',
           background: 'radial-gradient(ellipse 50.00% 50.00% at 50.00% 50.00%, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0.80) 100%)',
@@ -226,13 +246,93 @@ export default function NavBar(){
                 </Box>
               </>
             ) : (
-              <MenuIcon color={`${theme.palette.primary.secondary}`} />
+                <Box
+                  onClick={() => setOpenMenu((previous) => !previous)}
+                  sx={{ display: 'inline-flex', alignItems: 'center', cursor: 'pointer' }}
+                >
+                  <MenuIcon color={`${theme.palette.primary.secondary}`} />
+                </Box>
             )}
           </Box>
-        </Box>
 
+          {/* open menu if clicked 
+          <Box
+            sx={{
+              height: 60,
+              borderRadius: 3,
+              boxShadow: '0 6px 12px rgba(136.24, 162.24, 143.60, 0.25)',
+              background: 'radial-gradient(ellipse 50.00% 50.00% at 50.00% 50.00%, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0.80) 100%)',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'space-between',
+              px: 2.5,
+              position: 'relative',
+              overflow: 'hidden',
+            }}
+          ></Box>
+      */}
+          
+        </Box>
       </Box>
+
+      <Box
+        sx={{
+          display: openMenu && collapse ? 'block' : 'none',
+          width: '88%',
+          mt: 1.5,
+          borderRadius: 3,
+          boxShadow: '0 6px 12px rgba(136.24, 162.24, 143.60, 0.25)',
+          background: 'radial-gradient(ellipse 50.00% 50.00% at 50.00% 50.00%, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0.60) 100%)',
+          position: 'absolute',
+          top: -5,
+          left: 10,
+          right: 0,
+          overflow: 'hidden',
+          p: 2,
+        }}
+      >
+        {/* space for wrap around navbar */}
+        <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1, mt:6.5 }}></Box> 
+        
+        {/* menu links */}
+        <Box sx={{ display: 'flex', flexDirection: 'column', alignItems:'center', gap: 1 }}>
+          {links.map((label, index) => (
+            <Box
+              key={label}
+              onClick={() => {
+                setOpenMenu(false);
+                handleNavClick(label);
+              }}
+              sx={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'space-between',
+                py: 1,
+                px: 1.5,
+                borderRadius: 2,
+                cursor: 'pointer',
+                borderBottom: index !== links.length - 1 ? '1px solid rgba(103, 107, 116, 0.12)' : 'none',
+              }}
+            >
+              <Typography
+                variant="subtitle1"
+                sx={{
+                  fontWeight: 500,
+                  color: '#676b74ff',
+                  textTransform: 'lowercase',
+                  fontSize: '1rem',
+                }}
+              >
+                {label}
+              </Typography>
+            </Box>
+          ))}
+        </Box>
+      </Box>
+
       
     </Box>
+
+    
   )
 }

@@ -23,6 +23,9 @@ export default function Intro(){
       
       // profile, desc, and  stack
       <Container sx={{  mt:'120px', width: '90%', maxWidth: '980px', position: 'relative', zIndex: 1}}>
+
+        <Box sx={{}}>
+
           {/* Title */}
             <Typography
               variant="h3"
@@ -32,12 +35,12 @@ export default function Intro(){
                 lineHeight: '48px',
                 color: `${theme.palette.text.primary}`,
                 textAlign: { xs: 'center', md: 'left' },
-                mt:3, ml:5
+                mt:3, ml:5, mb:5
               }}
             >
               Hi, I'm <strong>Maria</strong>!
             </Typography>
-      <Grid container spacing={0} alignItems="center" sx={{ minHeight: '400px', justifyContent:'center', alignItems:'center', gap:6, width: '100%' }}>
+      <Grid container spacing={0} alignItems="center" sx={{  justifyContent:'center', alignItems:'center', gap:6, width: '100%' }}>
 
             <Grid item xs="auto" sx={{ display: 'flex', justifyContent: 'center', alignItems:'center' }}>
                   <Box
@@ -69,7 +72,7 @@ export default function Intro(){
                   </Box>
                 </Grid>
         <Grid item xs={12} md={6}>
-          <Box sx={{ display: 'flex', flexDirection: 'column', gap: 3 }}>
+          <Box sx={{ display: 'flex', flexDirection: 'column'}}>
 
           {/* /* About me */ }
                         <Typography
@@ -117,7 +120,7 @@ export default function Intro(){
           fontSize: '40px',
           lineHeight: '48px',
           color: `${theme.palette.text.primary}`,
-          textAlign: { xs: 'center', md: 'left' }, ml:5
+          textAlign: { xs: 'center', md: 'left' }, ml:5, mt:5
         }}
       >
         <ReactTyped
@@ -138,6 +141,7 @@ export default function Intro(){
 
       <MessageMe open={modalOpen} onClose={() => setModalOpen(false)} />
 
+        </Box>
     </Container>
   )
 }

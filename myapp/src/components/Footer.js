@@ -11,7 +11,7 @@ export default function Footer(){
     return(
         <Box
             sx={{
-                width: 1/2,
+                width: '90%', maxWidth: '980px',
                 mx: 'auto',
                 mt: 'auto',
                 mb: 2,

@@ -109,7 +109,7 @@ export default function Stacks(){
             }}>technologies</Typography>
             <Grid container spacing={3}  alignContent='center' justifyContent='center'>
                 {techStack.map((tech, index) => (
-                    <Grid item xs={12} sm={6} md={2.4} key={index} sx={{alignContent:'center'}}>
+                    <Grid item xs={6} sm={2.4} md={2.4} key={index} sx={{alignContent:'center'}}>
                         <StackCard icon={tech.icon} name={tech.name} />
                     </Grid>
                 ))}
