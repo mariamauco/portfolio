@@ -11,13 +11,23 @@ import {
 } from '@mui/material';
 import { ReactTyped } from 'react-typed';
 import { useTheme } from '@mui/material/styles';
+import { useLocation, useNavigate } from 'react-router-dom';
 import emailjs from 'emailjs-com'; // Import EmailJS
 import MessageMe from './MessageMe';
 
 export default function Intro(){
 
   const [modalOpen, setModalOpen] = useState(false);
-  const theme = useTheme()
+  const theme = useTheme();
+  const navigate = useNavigate();
+  const scrollToSection = (id) => {
+  const section = document.getElementById(id);
+
+  if (section) {
+    section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+};
+
   return(
       // Hi my Name is maria
       
@@ -84,7 +94,7 @@ export default function Intro(){
                               color: `${theme.palette.text.primary}`,
                               textAlign: { xs: 'center', md: 'justify'},
                           }}
-                          >I specialize in building seamless AI and automation solutions. Simply, I spend too much time infront of a screen solvig problems so that you and your systems don't have to.</Typography>
+                          >I specialize in building seamless AI and automation solutions. Simply, I spend too much time infront of a screen solving problems so that you and your systems don't have to.</Typography>
 
                         {/* Buttons */}
                         <Box
@@ -97,10 +107,13 @@ export default function Intro(){
                             color: `${theme.palette.text.primary}`,
                           }}>
                           <Box sx={{ display: 'flex', gap: 2 }}>
-                            <Button variant="outlined" sx={{ ...buttonStyle, width: '50%' }}>
+                            <Button variant="outlined" 
+                            sx={{ ...buttonStyle, width: '50%' }}
+                            onClick={() => scrollToSection('experiences')}>
                               Experiences
                             </Button>
-                            <Button variant="outlined" sx={{ ...buttonStyle, width: '50%' }}>
+                            <Button variant="outlined" sx={{ ...buttonStyle, width: '50%' }}
+                            onClick={() => scrollToSection('projects')}>
                               Explore Projects
                             </Button>
                           </Box>
@@ -124,7 +137,7 @@ export default function Intro(){
         }}
       >
         <ReactTyped
-          strings={['Software Engineer', 'AI Developer', 'Embedded Engineer']}
+          strings={['Software Engineer', 'AI Developer', 'Software Architect']}
           typeSpeed={100}
           backSpeed={100}
           loop

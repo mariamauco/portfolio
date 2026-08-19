@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import NavBar from '../NavBar';
 import Intro from '../Intro';
 import Projects from '../Projects';
@@ -19,6 +19,14 @@ export default function Home() {
   const location = useLocation();
   const navigate = useNavigate();
   const [menuSpacerHeight, setMenuSpacerHeight] = React.useState(0);
+
+  // secrets found in home page
+  const [secretsFound, setSecretsFound] = useState(0);
+  const progress = secretsFound * 20; // Calculate progress based on secrets
+
+  const handleSecretFound = () => { //handle if a secret is found
+    setSecretsFound((prev) => prev + 1);
+  };
 
   useEffect(() => {
     const target = location.state?.scrollTo;
@@ -50,7 +58,7 @@ export default function Home() {
       }}
     >
       {/* NAVIGATION BAR */}
-      <NavBar onMenuSpacerChange={setMenuSpacerHeight} />
+      <NavBar onMenuSpacerChange={setMenuSpacerHeight} progress = {progress} />
 
       <Box sx={{ height: menuSpacerHeight, width: '100%', flexShrink: 0 }} />
 
@@ -60,7 +68,7 @@ export default function Home() {
       </Container>
 
       {/* STACKS */}
-      <Stacks/>
+      <Stacks onSecretFound={handleSecretFound}/>
 
       {/* EXPERIENCE */}
       <Experiences/>

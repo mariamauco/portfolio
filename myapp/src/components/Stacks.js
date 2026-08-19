@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { buttonStyle } from './styles'
 import {    
   Container,
@@ -6,6 +6,9 @@ import {
   Typography,
   Button,
   Grid,
+  Card,
+  CardContent,
+  CardActionArea
 } from '@mui/material'
 
 import Icon from '@mui/material/Icon';
@@ -13,8 +16,6 @@ import { createSvgIcon } from '@mui/material/utils';
 import SvgIcon from '@mui/material/SvgIcon'
 import { ReactTyped } from 'react-typed';
 import { useTheme } from '@mui/material/styles';
-import {StackCard} from './Cards';
-
 // Import Material-UI icons
 import { Javascript } from '@mui/icons-material';
 import {  } from '@mui/icons-material'; // Example icons
@@ -66,37 +67,74 @@ const Linux = createSvgIcon(
   'Linux',
 );
 
+function getRandomInt(max) {
+  return Math.floor(Math.random() * max);
+}
 
 
+export default function Stacks( {onSecretFound}){
 
-// Define a mapping of technology names to their icons
-const techIcons = {
-    python: <Python sx={{ fontSize: 40, color: '#2f2f2fff' }} />, // Custom Python icon
-    javascript: <Javascript sx={{ fontSize: 40, color: '#2f2f2fff' }} />,
-    react: <ReactIcon sx={{ fontSize: 40, color: '#2f2f2fff' }} />,
-    c: <C sx={{ fontSize: 40, color: '#2f2f2fff' }} />,
-    cplusplus: <CPlusPlus sx={{ fontSize: 40, color: '#2f2f2fff' }} />,
-    docker: <Docker sx={{ fontSize: 40, color: '#2f2f2fff' }} />,
-    java: <Java sx={{ fontSize: 40, color: '#2f2f2fff' }} />,
-    node: <Node sx={{ fontSize: 40, color: '#2f2f2fff' }} />,
-    sql: <SQL sx={{ fontSize: 40, color: '#2f2f2fff' }} />,
-    linux: <Linux sx={{ fontSize: 40, color: '#2f2f2fff' }} />,
-};
-const techStack = [
-    { name: 'react', icon: techIcons.react },
-    { name: 'javascript', icon: techIcons.javascript },
-    { name: 'python', icon: techIcons.python }, 
-    { name: 'c', icon: techIcons.c },
-    { name: 'c++', icon: techIcons.cplusplus },
-    { name: 'docker', icon: techIcons.docker },
-    { name: 'java', icon: techIcons.java },
-    { name: 'node', icon: techIcons.node },
-    { name: 'sql', icon: techIcons.sql },
-    { name: 'linux', icon: techIcons.linux },
-];
-
-export default function Stacks(){
     const theme = useTheme();
+
+  // Define a mapping of technology names to their icons
+  const techIcons = {
+      python: <Python sx={{ fontSize: 40, color: '#2f2f2fff' }} />, // Custom Python icon
+      javascript: <Javascript sx={{ fontSize: 40, color: '#2f2f2fff' }} />,
+      react: <ReactIcon sx={{ fontSize: 40, color: '#2f2f2fff' }} />,
+      c: <C sx={{ fontSize: 40, color: '#2f2f2fff' }} />,
+      cplusplus: <CPlusPlus sx={{ fontSize: 40, color: '#2f2f2fff' }} />,
+      docker: <Docker sx={{ fontSize: 40, color: '#2f2f2fff' }} />,
+      java: <Java sx={{ fontSize: 40, color: '#2f2f2fff' }} />,
+      node: <Node sx={{ fontSize: 40, color: '#2f2f2fff' }} />,
+      sql: <SQL sx={{ fontSize: 40, color: '#2f2f2fff' }} />,
+      linux: <Linux sx={{ fontSize: 40, color: '#2f2f2fff' }} />,
+  };
+  const [techStack,setTechStack] = useState([
+      { name: 'react', icon: techIcons.react, color:"#00000000", cooldown:false },
+      { name: 'javascript', icon: techIcons.javascript, color:"#00000000", cooldown:false },
+      { name: 'python', icon: techIcons.python, color:"#00000000", cooldown:false }, 
+      { name: 'c', icon: techIcons.c, color:"#00000000", cooldown:false },
+      { name: 'c++', icon: techIcons.cplusplus, color:"#00000000", cooldown:false },
+      { name: 'docker', icon: techIcons.docker, color:"#00000000", cooldown:false },
+      { name: 'java', icon: techIcons.java, color:"#00000000", cooldown:false },
+      { name: 'node', icon: techIcons.node, color:"#00000000", cooldown:false },
+      { name: 'sql', icon: techIcons.sql, color:"#00000000", cooldown:false },
+      { name: 'linux', icon: techIcons.linux, color:"#00000000", cooldown:false },
+  ]);
+
+  const [firstClick, setFirstClick] = useState(false);
+
+  const changeColor = (index) => {
+
+    if (techStack[index].cooldown) return;
+    if (!firstClick) {
+      setFirstClick(true);
+      onSecretFound();
+    };
+
+    const r = getRandomInt(255);
+    const g = getRandomInt(255);
+    const b = getRandomInt(255);
+
+    const new_color = `rgba(${r}, ${g}, ${b}, .26)`;
+
+    // first change the color and set the cooldown 
+    setTechStack((prevStack) => {
+      const updatedStack = [...prevStack];
+      updatedStack[index] = {...updatedStack[index], color: new_color, cooldown: true };
+      return updatedStack;
+    })
+
+    // after 4 secs, clear the color
+    setTimeout(() => {
+      setTechStack((prevStack) => {
+        const updatedStack = [...prevStack];
+        updatedStack[index] = {...updatedStack[index], color:'#00000000', cooldown: false};
+        return updatedStack;
+      })
+    }, 4000)
+  }
+
     return(
         <Container maxWidth={false} sx={{  mt:10, alignContent:'center',width: '90%', maxWidth: '900px', position: 'relative', zIndex: 1 }}>
             <Typography variant="h3" sx={{ 
@@ -110,7 +148,21 @@ export default function Stacks(){
             <Grid container spacing={3}  alignContent='center' justifyContent='center'>
                 {techStack.map((tech, index) => (
                     <Grid item xs={6} sm={2.4} md={2.4} key={index} sx={{alignContent:'center'}}>
-                        <StackCard icon={tech.icon} name={tech.name} />
+                      <Card sx={{ height:'80px',border:'1px solid #b7b7b7ff', backgroundColor:`${tech.color}`,display: 'flex', alignItems: 'center', justifyContent: 'center', transition:'background-color .5s ease'}}>
+                        <CardActionArea
+                          disableRipple
+                          onClick={() => changeColor(index)}
+                          sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', }}>
+                            <CardContent sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', textAlign: 'center' }}>
+                                {tech.icon}
+                                <Typography variant="body2" sx={{ mt:1, color: '#2c2828' }}>
+                                    {tech.name}
+                                </Typography>
+                            </CardContent>
+                        </CardActionArea>
+                      </Card>
+
+
                     </Grid>
                 ))}
             </Grid>

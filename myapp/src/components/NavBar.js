@@ -4,16 +4,16 @@ import { SiGithub } from '@icons-pack/react-simple-icons';
 import { useTheme } from '@emotion/react';
 import { useLocation, useNavigate } from 'react-router-dom';
 
-export default function NavBar({ onMenuSpacerChange }){
+export default function NavBar({ onMenuSpacerChange, progress }){
   const [collapse, setCollapse] = useState(false);
   const [openMenu, setOpenMenu] = useState(false);
   const [isAtTop, setIsAtTop] = useState(true);
   const openMenuRef = useRef(openMenu);
   const links = ['experiences','projects', 'visitors', 'fosters']
-  const [progress, setProgress] = React.useState(1)
   const theme = useTheme();
   const navigate = useNavigate();
   const location = useLocation();
+  //const secret
 
   const scrollToSection = (id) => {
     const section = document.getElementById(id);
@@ -62,10 +62,18 @@ export default function NavBar({ onMenuSpacerChange }){
 
   const [isHidden, setIsHidden] = useState(false);
   const lastScrollY = useRef(0);
+  const prevProgressRef = useRef(progress);
 
   useEffect(() => {
     openMenuRef.current = openMenu;
   }, [openMenu]);
+
+  useEffect(() => {
+    if (prevProgressRef.current !== progress) {
+      setIsHidden(false);
+      prevProgressRef.current = progress;
+    }
+  }, [progress]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -122,8 +130,9 @@ export default function NavBar({ onMenuSpacerChange }){
       {/* Progress bar on top of NavBar */}
       <LinearProgress 
         variant="determinate" 
-        value={progress}
+        value={progress === 0 ? 1 : progress}
         sx={{
+          maxWidth: '900px',
           height: 4,
           borderRadius: 2,
           mb: 1,
@@ -139,7 +148,6 @@ export default function NavBar({ onMenuSpacerChange }){
       <Box
         sx={{
           height: 60,
-          width:'90%',
           borderRadius: 3,
           boxShadow: '0 6px 12px rgba(136.24, 162.24, 143.60, 0.25)',
           background: 'radial-gradient(ellipse 50.00% 50.00% at 50.00% 50.00%, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0.80) 100%)',
