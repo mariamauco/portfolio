@@ -1,33 +1,17 @@
-import React, { useEffect, useState } from 'react'
-import NavBar from '../NavBar';
+import React, { useEffect } from 'react';
 import Intro from '../Intro';
 import Projects from '../Projects';
 import Footer from '../Footer';
 import Stacks from '../Stacks';
 import Experiences from '../Experiences';
 import { useLocation, useNavigate } from 'react-router-dom';
-import {
-  Container,
-  Box,
-  Typography,
-  Button,
-  Grid,
-} from '@mui/material'
+import { Container, Box } from '@mui/material';
 
 
 export default function Home() {
   const location = useLocation();
   const navigate = useNavigate();
-  const [menuSpacerHeight, setMenuSpacerHeight] = React.useState(0);
-
-  // secrets found in home page
-  const [secretsFound, setSecretsFound] = useState(0);
-  const progress = secretsFound * 20; // Calculate progress based on secrets
-
-  const handleSecretFound = () => { //handle if a secret is found
-    setSecretsFound((prev) => prev + 1);
-  };
-
+  
   useEffect(() => {
     const target = location.state?.scrollTo;
 
@@ -57,10 +41,6 @@ export default function Home() {
         overflow: 'hidden',
       }}
     >
-      {/* NAVIGATION BAR */}
-      <NavBar onMenuSpacerChange={setMenuSpacerHeight} progress = {progress} />
-
-      <Box sx={{ height: menuSpacerHeight, width: '100%', flexShrink: 0 }} />
 
       {/* INTRODUCTION */}
       <Container id="home-top" sx={{  }}>
@@ -68,7 +48,7 @@ export default function Home() {
       </Container>
 
       {/* STACKS */}
-      <Stacks onSecretFound={handleSecretFound}/>
+      <Stacks/>
 
       {/* EXPERIENCE */}
       <Experiences/>

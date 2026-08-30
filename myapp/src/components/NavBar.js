@@ -3,8 +3,9 @@ import { Box, Typography, LinearProgress } from '@mui/material'
 import { SiGithub } from '@icons-pack/react-simple-icons';
 import { useTheme } from '@emotion/react';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { useSecrets } from './util/SecretsProvider';
 
-export default function NavBar({ onMenuSpacerChange, progress }){
+export default function NavBar({ onMenuSpacerChange }) {
   const [collapse, setCollapse] = useState(false);
   const [openMenu, setOpenMenu] = useState(false);
   const [isAtTop, setIsAtTop] = useState(true);
@@ -13,7 +14,9 @@ export default function NavBar({ onMenuSpacerChange, progress }){
   const theme = useTheme();
   const navigate = useNavigate();
   const location = useLocation();
-  //const secret
+  
+  // secrets progress
+  const { progress } = useSecrets();
 
   const scrollToSection = (id) => {
     const section = document.getElementById(id);

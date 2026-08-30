@@ -1,24 +1,17 @@
 import React, { useState } from 'react'
-import { buttonStyle } from './styles'
-import {    
+import {
   Container,
-  Box,
   Typography,
-  Button,
   Grid,
   Card,
   CardContent,
-  CardActionArea
+  CardActionArea,
 } from '@mui/material'
-
-import Icon from '@mui/material/Icon';
 import { createSvgIcon } from '@mui/material/utils';
-import SvgIcon from '@mui/material/SvgIcon'
-import { ReactTyped } from 'react-typed';
 import { useTheme } from '@mui/material/styles';
-// Import Material-UI icons
 import { Javascript } from '@mui/icons-material';
-import {  } from '@mui/icons-material'; // Example icons
+import { useSecrets } from './util/SecretsProvider';
+
 
 const Python = createSvgIcon(
   <svg fill="#000000" viewBox="0 0 512 512">
@@ -72,7 +65,7 @@ function getRandomInt(max) {
 }
 
 
-export default function Stacks( {onSecretFound}){
+export default function Stacks() {
 
     const theme = useTheme();
 
@@ -103,13 +96,14 @@ export default function Stacks( {onSecretFound}){
   ]);
 
   const [firstClick, setFirstClick] = useState(false);
+  const { handleSecretFound } = useSecrets();
 
   const changeColor = (index) => {
 
     if (techStack[index].cooldown) return;
     if (!firstClick) {
       setFirstClick(true);
-      onSecretFound();
+      handleSecretFound();
     };
 
     const r = getRandomInt(255);

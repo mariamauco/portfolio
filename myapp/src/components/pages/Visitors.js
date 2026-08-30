@@ -32,8 +32,6 @@ export default function Visitors() {
         overflow: 'hidden',
       }}
     >
-      {/* NAVIGATION BAR */}
-      <NavBar/>
 
       
         <Box sx={{background:'#ebebeb62',borderRadius:2,border: "1px solid #bababaff", justifyItems:'center', justifyContent:'center', p:3, mt:'150px'}}>
