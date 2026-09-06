@@ -5,9 +5,19 @@ const SecretsContext = createContext();
 export function SecretsProvider({children}){
     const [secretsFound, setSecretsFound] = useState(0);
     const progress = secretsFound * 20;
+    const [secrets, setSecrets] = useState([0,0,0,0,0]);
+    // 0 - stack random color
+    // 
+    //     
 
-    const handleSecretFound = () => {
-        setSecretsFound((prev) => prev + 1);
+    const handleSecretFound = (idx) => {
+        setSecrets((prev) => {
+            if (secrets[idx] === 1) return prev; // if already found
+            const updatedSecrets = [...prev];
+            updatedSecrets[idx] = 1;
+            setSecretsFound((prev) => prev + 1);
+            return updatedSecrets;
+        })
     };
 
     return(
@@ -20,3 +30,4 @@ export function SecretsProvider({children}){
 export function useSecrets() {
   return useContext(SecretsContext);
 }
+

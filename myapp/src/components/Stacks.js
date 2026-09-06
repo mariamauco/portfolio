@@ -103,7 +103,7 @@ export default function Stacks() {
     if (techStack[index].cooldown) return;
     if (!firstClick) {
       setFirstClick(true);
-      handleSecretFound();
+      handleSecretFound(0);
     };
 
     const r = getRandomInt(255);

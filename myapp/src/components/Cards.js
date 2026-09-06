@@ -5,6 +5,7 @@ import Typography from '@mui/material/Typography';
 import CardActionArea from '@mui/material/CardActionArea';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
+import { Button } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 
 
@@ -93,7 +94,7 @@ export function ExperienceCard({image, company, title, location, dates, descript
 
 }
 
-export function ProjectCard({ image, title, description }) {
+export function ProjectCard({ image, title, description, link }) {
     return (
         <Card sx={{  }}>
             <CardActionArea>
@@ -111,6 +112,8 @@ export function ProjectCard({ image, title, description }) {
                         {description}
                     </Typography>
                 </CardContent>
+                {link && <Button fullWidth href={`${link}`} target="_blank">Visit Site</Button>}
+                
             </CardActionArea>
         </Card>
     );
