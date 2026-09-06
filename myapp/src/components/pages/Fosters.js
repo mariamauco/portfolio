@@ -24,7 +24,6 @@ export default function Fosters() {
         sx={{
             width: '100%',
             minHeight: '100vh',
-            background: 'linear-gradient(180deg, rgba(237, 255, 226, 0.40) 0.87%, rgba(255, 255, 255, 0.00) 21.96%, rgba(255, 255, 255, 0.80) 68.9%), linear-gradient(270deg, #EDFFE2 0.06%, rgba(237, 222, 255, 0.60) 11.31%, rgba(255, 227, 245, 0.30) 24.75%, #FFF 50.03%, rgba(255, 227, 245, 0.30) 73.82%, rgba(237, 222, 255, 0.60) 84.08%, #EDFFE2 99.99%), #FFF',
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
@@ -32,10 +31,7 @@ export default function Fosters() {
             position: 'relative',
             overflow: 'hidden',
         }}
-        >
-
-
-        
+        >        
             <Box sx={{background:'#ebebeb62',borderRadius:2,border: "1px solid #bababaff", justifyItems:'center', justifyContent:'center', p:3, mt:'150px'}}>
                 <Typography variant="h3" sx={{ 
                     fontFamily:'Fira Code, monospace',

@@ -8,7 +8,6 @@ import { useSecrets } from './util/SecretsProvider';
 export default function NavBar({ onMenuSpacerChange }) {
   const [collapse, setCollapse] = useState(false);
   const [openMenu, setOpenMenu] = useState(false);
-  const [isAtTop, setIsAtTop] = useState(true);
   const openMenuRef = useRef(openMenu);
   const links = ['experiences','projects', 'visitors', 'fosters']
   const theme = useTheme();
@@ -64,7 +63,10 @@ export default function NavBar({ onMenuSpacerChange }) {
   }
 
   const [isHidden, setIsHidden] = useState(false);
+  // Track scroll movement separately from React state so each scroll event uses the latest values.
   const lastScrollY = useRef(0);
+  const scrollDistanceRef = useRef(0);
+  const isHiddenRef = useRef(false);
   const prevProgressRef = useRef(progress);
 
   useEffect(() => {
@@ -74,24 +76,37 @@ export default function NavBar({ onMenuSpacerChange }) {
   useEffect(() => {
     if (prevProgressRef.current !== progress) {
       setIsHidden(false);
+      isHiddenRef.current = false;
       prevProgressRef.current = progress;
     }
   }, [progress]);
 
   useEffect(() => {
+    // Require a meaningful amount of movement before changing navbar visibility.
+    const scrollThreshold = 250;
+    lastScrollY.current = window.scrollY;
+
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
-      const atTop = currentScrollY < 20;
+      const scrollDelta = currentScrollY - lastScrollY.current;
 
-      setIsAtTop(atTop);
+      // A direction change starts a new scroll measurement, preventing tiny reversals from toggling the navbar.
+      if (scrollDelta !== 0 && Math.sign(scrollDelta) !== Math.sign(scrollDistanceRef.current)) {
+        scrollDistanceRef.current = 0;
+      }
 
-      if (currentScrollY > lastScrollY.current && currentScrollY > 50){
+      scrollDistanceRef.current += scrollDelta;
+
+      // Hide the navbar after scrolling down, and close the mobile menu so it cannot remain open off-screen.
+      if (scrollDistanceRef.current > scrollThreshold && currentScrollY > 50 && !isHiddenRef.current){
         if (openMenuRef.current)
           setOpenMenu(false);
+        isHiddenRef.current = true;
         setIsHidden(true);
-        
       }
-      else if(currentScrollY < lastScrollY.current){
+      // Show it again only after scrolling up by the same threshold.
+      else if(scrollDistanceRef.current < -scrollThreshold && isHiddenRef.current){
+        isHiddenRef.current = false;
         setIsHidden(false);
       }
 
@@ -104,10 +119,10 @@ export default function NavBar({ onMenuSpacerChange }) {
   }, []);
 
   useEffect(() => {
-    const menuSpacerHeight = openMenu && collapse && isAtTop ? 170 : 0;
+    const menuSpacerHeight = openMenu && collapse ? 220 : 0;
 
     onMenuSpacerChange?.(menuSpacerHeight);
-  }, [openMenu, collapse, isAtTop, onMenuSpacerChange]);
+  }, [openMenu, collapse, onMenuSpacerChange]);
 
 
   return(
