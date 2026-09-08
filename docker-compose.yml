@@ -34,15 +34,16 @@ services:
     volumes:
       - ./myapp-backend:/app
       - /app/node_modules
+    env_file:
+      - ./myapp-backend/.env
     command: sh -c "npm install && node app.js"
     ports:
       - "3300:3300"
     environment:
-      POSTGRES_HOST: host.docker.internal
-      POSTGRES_PORT: 3100
-      POSTGRES_USER: maria
-      POSTGRES_PASSWORD: password
-      POSTGRES_DB: portfolio
+      POSTGRES_HOST: ${POSTGRES_HOST:-host.docker.internal}
+      POSTGRES_PORT: ${POSTGRES_PORT:-3100}
+      POSTGRES_USER: ${POSTGRES_USER:-maria}
+      POSTGRES_DB: ${POSTGRES_DB:-portfolio}
     extra_hosts:
       - "host.docker.internal:host-gateway"
     restart: "no"
@@ -53,15 +54,16 @@ services:
     volumes:
       - ./myapp-backend:/app
       - /app/node_modules
+    env_file:
+      - ./myapp-backend/.env
     command: sh -c "npm install --omit=dev && node app.js"
     ports:
       - "3301:3300"
     environment:
-      POSTGRES_HOST: host.docker.internal
-      POSTGRES_PORT: 3100
-      POSTGRES_USER: maria
-      POSTGRES_PASSWORD: password
-      POSTGRES_DB: portfolio
+      POSTGRES_HOST: ${POSTGRES_HOST:-host.docker.internal}
+      POSTGRES_PORT: ${POSTGRES_PORT:-3100}
+      POSTGRES_USER: ${POSTGRES_USER:-maria}
+      POSTGRES_DB: ${POSTGRES_DB:-portfolio}
     extra_hosts:
       - "host.docker.internal:host-gateway"
     restart: always

@@ -6,7 +6,7 @@ import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import { Box, Button, Container, IconButton, Slider, Stack, TextField, Tooltip, Typography } from '@mui/material';
 
 const brushColors = ['#39542D', '#252F27', '#C95D63', '#4B75A8', '#D18B32'];
-const apiUrl = 'http://localhost:3300';
+const apiUrl = process.env.NODE_ENV === 'production' ? 'https://mariaapi.jewellbase.com' : 'http://localhost:3300';
 const cooldownCookie = 'visitor_note_cooldown';
 const cooldownDuration = 24 * 60 * 60 * 1000;
 
