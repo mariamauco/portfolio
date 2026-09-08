@@ -135,3 +135,15 @@ export function StackCard({ icon, name }) {
     );
 }
 
+export function VisitorCard({ name, message, doodle }){
+    return (
+        <Card sx={{ width: '100%', aspectRatio: '1 / 1', position: 'relative', overflow: 'hidden', border: '1px solid #CFC0D4', boxShadow: '0 0 4px rgba(0, 0, 0, 0.25)' }}>
+            {doodle && <CardMedia component="img" image={doodle} alt="Visitor doodle" sx={{ width: '100%', height: '100%', objectFit: 'contain', backgroundColor: '#fff' }} />}
+            <CardContent sx={{ position: 'absolute', inset: 0, display: 'flex', flexDirection: 'column', justifyContent: 'flex-end', background: 'linear-gradient(transparent, rgba(255, 255, 255, 0.96))', opacity: { xs: 1, md: 0 }, transition: 'opacity 180ms ease', '&:hover': { opacity: 1 } }}>
+                <Typography variant="subtitle2">{name || 'anonymous'}</Typography>
+                <Typography variant="body2" color="text.secondary" sx={{ overflowWrap: 'anywhere' }}>{message}</Typography>
+            </CardContent>
+        </Card>
+    );
+}
+
