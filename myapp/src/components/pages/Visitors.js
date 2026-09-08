@@ -151,7 +151,7 @@ export default function Visitors() {
           Leave a <Box component="span" sx={{ fontWeight: 700 }}>note</Box>!
         </Typography>
 
-        <Box sx={{ p: { xs: 1.5, md: 2 }, borderRadius: 2, backgroundColor: 'rgba(247, 233, 250, 0.42)' }}>
+        <Box sx={{ p: { xs: 1.5, md: 2 }, borderRadius: 0, backgroundColor: 'rgba(247, 233, 250, 0.42)' }}>
           <Box component="form" onSubmit={handleSubmit} sx={{ display: 'flex', flexDirection: { xs: 'column', md: 'row' }, alignItems: 'stretch', gap: { xs: 2, md: 3 }, p: { xs: 1.5, md: 2 }, borderRadius: 2.5, backgroundColor: '#D2E6B7' }}>
             <Stack spacing={1.5} sx={{ flex: '1 1 55%', minWidth: 0 }}>
               <Stack direction="row" alignItems="center" spacing={1} sx={{ px: 0.5 }}>
@@ -187,7 +187,7 @@ export default function Visitors() {
             </Stack>
 
             <Stack spacing={1} sx={{ flex: '1 1 45%', justifyContent: 'center', p: { xs: 0, md: 1 } }}>
-              <Typography sx={{ mb: 1, textAlign: 'center', color: '#39542D', fontFamily: 'Fira Code, monospace', fontSize: 12 }}>have something to share before you go?</Typography>
+              <Typography sx={{ mb: 1, textAlign: 'center', color: '#39542D', fontFamily: 'Fira Code, monospace', fontSize: 14 }}>have something to share before you go?</Typography>
               <TextField name="name" placeholder="Name (optional)" variant="filled" hiddenLabel fullWidth />
               <TextField name="message" placeholder="Message (max chars: 200)" variant="filled" hiddenLabel multiline minRows={5} fullWidth inputProps={{maxLength:200}} />
               <Button type="submit" disabled={isSubmitting} variant="outlined" sx={{ minHeight: 30, borderColor: '#ADCD82', color: 'text.primary', backgroundColor: 'rgba(255, 255, 255, 0.85)' }}>{isSubmitting ? 'Submitting...' : 'Submit'}</Button>

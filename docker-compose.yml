@@ -1,18 +1,17 @@
-version: '3.8'
-
 services:
   # Development Service (Run this locally or when debugging)
   web-dev:
     build:
-      context: .
+      context: ./myapp
       target: dev
     # Map to a different port (e.g., 3001) to avoid conflict with prod
     ports:
       - "3001:3000" 
-    volumes:
-      - .:/app
     environment:
       - CHOKIDAR_USEPOLLING=true
+    volumes:
+      - ./myapp:/app
+      - /app/node_modules
     # Do not auto-restart dev; we want to see errors immediately
     restart: "no" 
 
@@ -20,7 +19,7 @@ services:
   web-prod:
     container_name: portfolio
     build:
-      context: .
+      context: ./myapp
       target: prod
     ports:
       - "3000:3000"
