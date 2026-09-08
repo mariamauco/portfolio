@@ -9,7 +9,7 @@ export default function NavBar({ onMenuSpacerChange }) {
   const [collapse, setCollapse] = useState(false);
   const [openMenu, setOpenMenu] = useState(false);
   const openMenuRef = useRef(openMenu);
-  const links = ['experiences','projects', 'visitors', 'fosters']
+  const links = ['experiences','projects', 'visitors']
   const theme = useTheme();
   const navigate = useNavigate();
   const location = useLocation();

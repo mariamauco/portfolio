@@ -94,7 +94,7 @@ export function ExperienceCard({image, company, title, location, dates, descript
 
 }
 
-export function ProjectCard({ image, title, description, link }) {
+export function ProjectCard({ image, title, description, link, github}) {
     return (
         <Card sx={{  }}>
             <CardActionArea>
@@ -113,6 +113,7 @@ export function ProjectCard({ image, title, description, link }) {
                     </Typography>
                 </CardContent>
                 {link && <Button fullWidth href={`${link}`} target="_blank">Visit Site</Button>}
+                {github && <Button fullWidth href={`${github}`} target="_blank">Github Repo</Button>}
                 
             </CardActionArea>
         </Card>

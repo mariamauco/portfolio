@@ -16,10 +16,10 @@ export default function Projects(){
     const theme = useTheme()
 
         const projects = [
-            { id: 1, image: require('../imgs/digitalwardrobe.jpg'), title: 'Fitly', description: 'I guided a team to build a digital wardrobe app that generates personalized, weather-conscious outfit recommendations. This project sparked a passion for dev-ops and homelabbing.', link: 'https://fitly.jewellbase.com/landing' },
-            { id: 2, image: require('../imgs/EcosorterHome.png'), title: 'EcoSorter', description: 'Waste sorting app that detects objects, classifes them, and informs you on the best way to recycle them.', link: 'https://ecosorter.jewellbase.com/' },
-            { id: 3, image: require('../imgs/RERASSOR.jpg'), title: 'RE-RASSOR', description: 'Led my Senior Design team to build an autonomous rover-arm coordination system. It was a great to get hands-on embedded engineering experience and support Florida Space Institute\'s mission.', link: null },
-            // { id: 3, image: 'project3.jpg', title: 'Project 3', description: 'Description for project 3', link: '' },
+            { id: 1, image: require('../imgs/digitalwardrobe.jpg'), title: 'Fitly', description: 'I guided a team to build a digital wardrobe app that generates personalized, weather-conscious outfit recommendations. This project sparked a passion for dev-ops and homelabbing.', link: 'https://fitly.jewellbase.com/landing', github:'https://github.com/mariamauco/Spr26DigitalWardrobe'},
+            { id: 2, image: require('../imgs/EcosorterHome.png'), title: 'EcoSorter', description: 'Waste sorting app that detects objects, classifes them, and informs you on the best way to recycle them.', link: 'https://ecosorter.jewellbase.com/', github:'https://github.com/mariamauco/Fall2025WEECSLarge'},
+            { id: 3, image: require('../imgs/RERASSOR.jpg'), title: 'RE-RASSOR', description: 'Led my Senior Design team to build an autonomous rover-arm coordination system. It was a great to get hands-on embedded engineering experience and support Florida Space Institute\'s mission.', link: null, github: null },
+            // { id: 3, image: 'project3.jpg', title: 'Project 3', description: 'Description for project 3', link: '', github:'' },
         ];
 
         return (
@@ -41,6 +41,7 @@ export default function Projects(){
                                 title={project.title} 
                                 description={project.description} 
                                 link={project.link}
+                                github={project.github}
                             />
                         </Grid>
                     ))}
