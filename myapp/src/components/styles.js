@@ -25,7 +25,7 @@ export const theme = createTheme({
     mode: 'light',
     primary: {
       main: '#a9eb8b',
-      secondary: '#88b174'
+      secondary: '#84c763'
     },
     secondary: {
     main: '#dea3f9',
@@ -55,3 +55,17 @@ export const buttonStyle = {
   export const cardStyle = {
 
   }
+
+export const tagStyle = {
+  px: 1,
+  py: 0.5,
+  borderRadius: 999,
+  backgroundColor: 'rgba(154, 210, 157, 0.14)',
+  color: 'rgba(28, 36, 28, 0.93)',
+  border: `2px solid ${theme.palette.primary.main}`,
+  fontSize: '0.77rem',
+  fontFamily: theme.typography.fontFamily,
+  lineHeight: 1,
+  display: 'inline-flex',
+  alignItems: 'center',
+}
