@@ -48,7 +48,7 @@ export function ExperienceCard({image, company, title, location, dates, descript
                 <CardContent sx={{ background: '#fff', pt: 1 }}>
                     <Box sx={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between'}}>
                         <Box sx={{ display: 'flex', flexDirection: 'row', minWidth: 0 }}>
-                            <Typography variant="body2" sx={{ color: 'text.primary', fontWeight: 600 }}>
+                            <Typography variant="body2" sx={{ color: 'primary.secondary', fontWeight: 600 }}>
                                 {company}
                             </Typography>
                             <Typography variant="body2" sx={{ color: 'text.secondary', ml:1.5 }}>
