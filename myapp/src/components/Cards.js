@@ -6,12 +6,12 @@ import CardActionArea from '@mui/material/CardActionArea';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import { Button } from '@mui/material';
-import { useTheme } from '@mui/material/styles';
+import { tagStyle } from './styles';
+
 
 
 export function ExperienceCard({image, company, title, location, dates, description, tags}){
     
-    const theme = useTheme();
     return(
         <Card
             sx={{
@@ -67,21 +67,7 @@ export function ExperienceCard({image, company, title, location, dates, descript
                     <Grid container spacing={1}>
                         {tags?.map((tag) => (
                             <Grid item key={tag}>
-                                <Box
-                                    sx={{
-                                        px: 1,
-                                        py: 0.5,
-                                        borderRadius: 999,
-                                        backgroundColor: 'rgba(154, 210, 157, 0.14)',
-                                        color: 'rgba(28, 36, 28, 0.93)',
-                                        border: `2px solid ${theme.palette.primary.main}`,
-                                        fontSize: '0.77rem',
-                                        fontFamily:theme.typography.fontFamily,
-                                        lineHeight: 1,
-                                        display: 'inline-flex',
-                                        alignItems: 'center',
-                                    }}
-                                >
+                                <Box sx={tagStyle}>
                                     {tag}
                                 </Box>
                             </Grid>
@@ -94,9 +80,11 @@ export function ExperienceCard({image, company, title, location, dates, descript
 
 }
 
-export function ProjectCard({ image, title, description, link, github}) {
+export function ProjectCard({ image, title, description, active, link, github}) {
     return (
-        <Card sx={{  }}>
+        <Card
+            sx={{ backgroundColor: active ? '#ffffff' : '#FFFFFF' }}
+        >
             <CardActionArea>
                 <CardMedia
                     component="img"
@@ -105,6 +93,13 @@ export function ProjectCard({ image, title, description, link, github}) {
                     alt={title}
                 />
                 <CardContent>
+                    {active > 0 &&
+                    <Box sx={{ mb: 1, typography: 'button', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'primary.secondary' }}>
+                        In progress
+                    </Box>
+
+                    }
+                    
                     <Typography gutterBottom variant="h5" component="div">
                         {title}
                     </Typography>
@@ -112,8 +107,8 @@ export function ProjectCard({ image, title, description, link, github}) {
                         {description}
                     </Typography>
                 </CardContent>
-                {link && <Button fullWidth href={`${link}`} target="_blank">Visit Site</Button>}
-                {github && <Button fullWidth href={`${github}`} target="_blank">Github Repo</Button>}
+                {link && <Button fullWidth href={`${link}`} target="_blank" sx={{color: 'primary.secondary'}}>Visit Site</Button>}
+                {github && <Button fullWidth href={`${github}`} target="_blank" sx={{color: 'primary.secondary'}}>Github Repo</Button>}
                 
             </CardActionArea>
         </Card>
