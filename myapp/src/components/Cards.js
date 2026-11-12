@@ -7,6 +7,9 @@ import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import { Button } from '@mui/material';
 import { tagStyle } from './styles';
+import LinkIcon from '@mui/icons-material/Link';
+import { LinkedInIcon } from './styles';
+import { SiGithub } from '@icons-pack/react-simple-icons';
 
 
 
@@ -34,13 +37,13 @@ export function ExperienceCard({image, company, title, location, dates, descript
                         sx={{
                             position: 'absolute',
                             inset: 0,
-                            background: 'linear-gradient(to top, #ffffff 18%, rgba(255, 255, 255, 0.78) 40%, rgba(255, 255, 255, 0) 78%)',
+                            background: 'linear-gradient(to top, #ffffff 2%, rgba(255, 255, 255, 0.18) 15%, rgba(255, 255, 255, 0) 78%)',
                         }}
                     />
                 </Box>
 
                 <Box sx={{ px: 2,}}>
-                    <Typography gutterBottom variant="h5" component="div" sx={{ m: 0, fontWeight: 700 }}>
+                    <Typography variant="h4" component="div" sx={{ m: 0 }}>
                         {title}
                     </Typography>
                 </Box>
@@ -64,7 +67,7 @@ export function ExperienceCard({image, company, title, location, dates, descript
                         {description}
                     </Typography>
 
-                    <Grid container spacing={1}>
+                    <Grid container spacing={1} sx={{justifyContent:'space-between'}}>
                         {tags?.map((tag) => (
                             <Grid item key={tag}>
                                 <Box sx={tagStyle}>
@@ -83,12 +86,12 @@ export function ExperienceCard({image, company, title, location, dates, descript
 export function ProjectCard({ image, title, description, active, link, github}) {
     return (
         <Card
-            sx={{ backgroundColor: active ? '#ffffff' : '#FFFFFF' }}
+            sx={{ backgroundColor: active ? '#ffffff' : '#FFFFFF', height:'380px' }}
         >
             <CardActionArea>
                 <CardMedia
                     component="img"
-                    height="220"
+                    height="200"
                     image={(image)}
                     alt={title}
                 />
@@ -99,17 +102,36 @@ export function ProjectCard({ image, title, description, active, link, github}) 
                     </Box>
 
                     }
+                    <Box sx={{display: 'flex', alignItems: 'center', justifyContent: 'space-between'}}>
+                        <Typography gutterBottom variant="h3" component="div">
+                            {title}
+                        </Typography>
+                        <Box sx={{display: 'flex', alignItems: 'center', gap: 1}}>
+                            {link && <Box
+                                component="a"
+                                href={`${link}`}
+                                target="_blank"
+                                rel="noreferrer"
+                                sx={{ display: 'inline', alignItems: 'center', color: 'primary.secondary'}}
+                            >
+                                <LinkIcon/>
+                            </Box>}
+                            {github && <Box
+                                component="a"
+                                href={`${link}`}
+                                target="_blank"
+                                rel="noreferrer"
+                                sx={{ display: 'inline', alignItems: 'center', color: 'primary.secondary'}}
+                            >
+                                <SiGithub size={20}/>
+                            </Box>}
+                        </Box>
+                    </Box>
                     
-                    <Typography gutterBottom variant="h5" component="div">
-                        {title}
-                    </Typography>
                     <Typography variant="body2" sx={{ color: 'text.secondary' }}>
                         {description}
                     </Typography>
                 </CardContent>
-                {link && <Button fullWidth href={`${link}`} target="_blank" sx={{color: 'primary.secondary'}}>Visit Site</Button>}
-                {github && <Button fullWidth href={`${github}`} target="_blank" sx={{color: 'primary.secondary'}}>Github Repo</Button>}
-                
             </CardActionArea>
         </Card>
     );

@@ -4,11 +4,13 @@ WORKDIR /app
 # Dependency layer (cached between builds)
 FROM base AS deps
 COPY package*.json ./
+# COPY . .
 RUN npm install
 
 # Dev stage for docker compose: mount source and hot-reload
 FROM deps AS dev
 ENV NODE_ENV=development
+ENV HOST=0.0.0.0
 EXPOSE 3000
 CMD ["npm", "start"]
 

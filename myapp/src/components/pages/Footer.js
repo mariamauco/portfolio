@@ -51,7 +51,7 @@ export default function Footer(){
                         fontSize: '14px',
                         color: `${theme.palette.text.faint}`}}
                     >
-                        Last updated: August 15, 2026
+                        Last updated: November 12, 2026
                     </Typography>
 
 

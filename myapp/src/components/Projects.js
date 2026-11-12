@@ -16,8 +16,8 @@ export default function Projects(){
     const theme = useTheme()
 
         const projects = [
-            { id: 2, image: require('../imgs/outline.png'), title: 'Outline Open Source Contributor', description: 'Actively developing enhancements for Outline, an open-source team knowledge base platform. Focusing on resolving community-flagged issues, and implementing high-impact features.', active: 1, link: null, github: null },
-            { id: 1, image: require('../imgs/Graphify.png'), title: 'Database to Graph Knowledge Agent', description: 'Architecting a system to support an AI agent that creates accurate database queries or answers using a knowledge graph, which is converted from a database schema, thus reducing token consumption and hallucinations.', active: 1, link: null, github: null },
+            { id: 2, image: require('../imgs/outline.png'), title: 'Outline Contribution', description: 'Actively developing enhancements for Outline, an open-source team knowledge base platform. Focusing on resolving community-flagged issues, and implementing high-impact features.', active: 0, link:null, github: 'https://github.com/mariamauco/outline-team-1' },
+            { id: 1, image: require('../imgs/Graphify.png'), title: 'Graph2SQL Agent', description: 'AI agent that generates perform natural language queries over complex relational databases using a knowledge graph, reducing token consumption and hallucinations.', active: 1, link: null, github: 'https://github.com/mariamauco/graph2sql-agent' },
             { id: 3, image: require('../imgs/weecsweb.png'), title: 'WEECS Full-Stack Overhaul', description: 'Redesigning WEECS\'s UI and backend to expand its platform. Creating workflows to automate user memberships, merch orders, and sponsor relationship management.', active: 1, link: 'https://women.eecs.ucf.edu/', github: 'https://github.com/mariamauco/weecs-website' },
             
             { id: 4, image: require('../imgs/digitalwardrobe.jpg'), title: 'Fitly', description: 'I guided a team to build a digital wardrobe app that generates personalized, weather-conscious outfit recommendations. This project sparked a passion for dev-ops and homelabbing.', active: 0, link: 'https://fitly.jewellbase.com/landing', github:'https://github.com/mariamauco/Spr26DigitalWardrobe'},
@@ -28,11 +28,8 @@ export default function Projects(){
 
         return (
             <Container id="projects" maxWidth={false}
-                    sx={{ mt: 10, width: '100%', maxWidth: '900px', position: 'relative', zIndex: 1 }}>
-                <Typography variant="h3" sx={{ 
-                fontWeight: 400,
-                  fontSize: '30px',
-                  lineHeight: '48px',
+                    sx={{ mt: 10, mb:5,width: '100%', maxWidth: '940px', position: 'relative', zIndex: 1 }}>
+                <Typography variant="h2" sx={{ 
                   color: `${theme.palette.text.primary}`,
                   textAlign: { xs: 'center', md: 'left' },
                   mb:3
@@ -52,9 +49,9 @@ export default function Projects(){
                     ))}
                 </Grid>
                 <Box sx={{ textAlign: 'right' }}>
-                    <Button variant="text"  sx={{ textTransform: 'none', fontSize: '1rem' }}>
+                    {/* <Button variant="text"  sx={{ textTransform: 'none', fontSize: '1rem' }}>
                         See More
-                    </Button>
+                    </Button> */}
                 </Box>
             </Container>
         );

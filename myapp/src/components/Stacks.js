@@ -6,12 +6,14 @@ import {
   Card,
   CardContent,
   CardActionArea,
+  Box,
 } from '@mui/material'
 import { createSvgIcon } from '@mui/material/utils';
 import { useTheme } from '@mui/material/styles';
 import { Javascript } from '@mui/icons-material';
 import { useSecrets } from './util/SecretsProvider';
 
+const fontsize = 25;
 
 const Python = createSvgIcon(
   <svg fill="#000000" viewBox="0 0 512 512">
@@ -71,27 +73,25 @@ export default function Stacks() {
 
   // Define a mapping of technology names to their icons
   const techIcons = {
-      python: <Python sx={{ fontSize: 40, color: '#2f2f2fff' }} />, // Custom Python icon
-      javascript: <Javascript sx={{ fontSize: 40, color: '#2f2f2fff' }} />,
-      react: <ReactIcon sx={{ fontSize: 40, color: '#2f2f2fff' }} />,
-      c: <C sx={{ fontSize: 40, color: '#2f2f2fff' }} />,
-      cplusplus: <CPlusPlus sx={{ fontSize: 40, color: '#2f2f2fff' }} />,
-      docker: <Docker sx={{ fontSize: 40, color: '#2f2f2fff' }} />,
-      java: <Java sx={{ fontSize: 40, color: '#2f2f2fff' }} />,
-      node: <Node sx={{ fontSize: 40, color: '#2f2f2fff' }} />,
-      sql: <SQL sx={{ fontSize: 40, color: '#2f2f2fff' }} />,
-      linux: <Linux sx={{ fontSize: 40, color: '#2f2f2fff' }} />,
+      python: <Python sx={{ fontSize: fontsize, color: '#2f2f2fff' }} />, // Custom Python icon
+      javascript: <Javascript sx={{ fontSize: fontsize, color: '#2f2f2fff' }} />,
+      react: <ReactIcon sx={{ fontSize: fontsize, color: '#2f2f2fff' }} />,
+      c: <C sx={{ fontSize: fontsize, color: '#2f2f2fff' }} />,
+      cplusplus: <CPlusPlus sx={{ fontSize: fontsize, color: '#2f2f2fff' }} />,
+      docker: <Docker sx={{ fontSize: fontsize, color: '#2f2f2fff' }} />,
+      java: <Java sx={{ fontSize: fontsize, color: '#2f2f2fff' }} />,
+      node: <Node sx={{ fontSize: fontsize, color: '#2f2f2fff' }} />,
+      sql: <SQL sx={{ fontSize: fontsize, color: '#2f2f2fff' }} />,
+      linux: <Linux sx={{ fontSize: fontsize, color: '#2f2f2fff' }} />,
   };
   const [techStack,setTechStack] = useState([
       { name: 'react', icon: techIcons.react, color:"#00000000", cooldown:false },
       { name: 'javascript', icon: techIcons.javascript, color:"#00000000", cooldown:false },
       { name: 'python', icon: techIcons.python, color:"#00000000", cooldown:false }, 
       { name: 'c', icon: techIcons.c, color:"#00000000", cooldown:false },
-      { name: 'c++', icon: techIcons.cplusplus, color:"#00000000", cooldown:false },
       { name: 'docker', icon: techIcons.docker, color:"#00000000", cooldown:false },
       { name: 'java', icon: techIcons.java, color:"#00000000", cooldown:false },
       { name: 'node', icon: techIcons.node, color:"#00000000", cooldown:false },
-      { name: 'sql', icon: techIcons.sql, color:"#00000000", cooldown:false },
       { name: 'linux', icon: techIcons.linux, color:"#00000000", cooldown:false },
   ]);
 
@@ -130,26 +130,18 @@ export default function Stacks() {
   }
 
     return(
-        <Container maxWidth={false} sx={{  mt:10, alignContent:'center',width: '90%', maxWidth: '900px', position: 'relative', zIndex: 1 }}>
-            <Typography variant="h3" sx={{ 
-                fontWeight: 400,
-                    fontSize: '30px',
-                    lineHeight: '48px',
-                    color: `${theme.palette.text.primary}`,
-                    textAlign: { xs: 'center', md: 'left' },
-                    mb:3
-            }}>technologies</Typography>
-            <Grid container spacing={3}  alignContent='center' justifyContent='center'>
+        <Container maxWidth={false} sx={{  mt:5, alignContent:'center',width: '90%', maxWidth: '940px', position: 'relative', zIndex: 1 }}>
+
+            <Box sx={{ display: 'flex', fgap: 2, pb: 1, justifyContent: 'space-between' }}>
                 {techStack.map((tech, index) => (
-                    <Grid item xs={6} sm={2.4} md={2.4} key={index} sx={{alignContent:'center'}}>
-                      <Card sx={{ height:'80px',border:'1px solid #b7b7b7ff', backgroundColor:`${tech.color}`,display: 'flex', alignItems: 'center', justifyContent: 'center', transition:'background-color .5s ease'}}>
+                      <Card key={index} sx={{ height: '50px', minWidth: 'max-content',  border: '1px solid #b7b7b7ff', backgroundColor: `${tech.color}`, display: 'flex', alignItems: 'center', justifyContent: 'center', transition: 'background-color .5s ease' }}>
                         <CardActionArea
                           disableRipple
                           onClick={() => changeColor(index)}
                           sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', }}>
-                            <CardContent sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', textAlign: 'center' }}>
+                            <CardContent sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 1, textAlign: 'center', px: 2, '&:last-child': { pb: 2 } }}>
                                 {tech.icon}
-                                <Typography variant="body2" sx={{ mt:1, color: '#2c2828' }}>
+                                <Typography variant="body2" sx={{ color: '#2c2828' }}>
                                     {tech.name}
                                 </Typography>
                             </CardContent>
@@ -157,9 +149,8 @@ export default function Stacks() {
                       </Card>
 
 
-                    </Grid>
                 ))}
-            </Grid>
+            </Box>
 
         </Container>
     )

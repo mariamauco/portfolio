@@ -4,6 +4,7 @@ import { SiGithub } from '@icons-pack/react-simple-icons';
 import { useTheme } from '@emotion/react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useSecrets } from './util/SecretsProvider';
+import {LinkedInIcon, MenuIcon} from './styles'
 
 export default function NavBar({ onMenuSpacerChange }) {
   const [collapse, setCollapse] = useState(false);
@@ -49,18 +50,7 @@ export default function NavBar({ onMenuSpacerChange }) {
     return () => window.removeEventListener('resize', updateCollapse);
   }, []);
 
-  const LinkedInIcon = () => {
-    return(
-      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill={`${theme.palette.primary.secondary}`} class="bi bi-linkedin" viewBox="0 0 16 16">
-        <path d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854zm4.943 12.248V6.169H2.542v7.225zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248S2.4 3.226 2.4 3.934c0 .694.521 1.248 1.327 1.248zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016l.016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225z"/>
-      </svg>
-    )
-  }
-  const MenuIcon = () => {
-    return(
-      <svg width="24" height="24" viewBox="0 0 24 24" fill={`${theme.palette.primary.secondary}`}  xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M4 6H20M4 12H20M4 18H20" stroke={`${theme.palette.primary.secondary}`} stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>
-    )
-  }
+
 
   const [isHidden, setIsHidden] = useState(false);
   // Track scroll movement separately from React state so each scroll event uses the latest values.
@@ -138,8 +128,8 @@ export default function NavBar({ onMenuSpacerChange }) {
         transition: 'transform 0.3s ease-in-out', // smooth animation
 
         
-        width: '90%',
-        maxWidth: '900px',
+        width: '100%',
+        maxWidth: '940px',
         mx: 'auto',
         mt: 2,
         px: 2,
@@ -150,7 +140,7 @@ export default function NavBar({ onMenuSpacerChange }) {
         variant="determinate" 
         value={progress === 0 ? 1 : progress}
         sx={{
-          maxWidth: '900px',
+          maxWidth: '940px',
           height: 4,
           borderRadius: 2,
           mb: 1,
@@ -201,6 +191,7 @@ export default function NavBar({ onMenuSpacerChange }) {
           display: 'flex',
           flexDirection: 'row',
           alignItems: 'center',
+          justifyContent:'space-between',
           gap: 1,
           position: 'relative',
           zIndex: 1,
@@ -208,10 +199,9 @@ export default function NavBar({ onMenuSpacerChange }) {
           }}
         >
           {/* Name */}
-          <Box
-            onClick={() => handleNavClick('home-top')}
-            sx={{ display: 'flex', alignItems: 'center', gap: 1, flexShrink: 0, cursor: 'pointer' }}
-          >
+          <Box component="ul" sx={{ display: 'flex', alignItems: 'center', gap: 1, flexShrink: 0, listStyle: 'none', p: 0, m: 0 }}>
+            <Box component="li">
+              <Box component="a" href="/" onClick={(event) => { event.preventDefault(); handleNavClick('home-top'); }} sx={{ display: 'flex', alignItems: 'center', gap: 1, textDecoration: 'none' }}>
             <img src={require('../imgs/my-notion-face-transparent.png')}
                  style={{
                    width: '40px',
@@ -231,72 +221,27 @@ export default function NavBar({ onMenuSpacerChange }) {
             >
               MARIA
             </Typography>
+              </Box>
+            </Box>
           </Box>
 
-          <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-end', gap: 3, ml: 'auto', flexShrink: 0 }}>
+          <Box component="ul" sx={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-end', gap: 3, ml: 'auto', flexShrink: 0, listStyle: 'none', p: 0, m: 0 }}>
             {!collapse ? (
               <>
                 {links.map((label) => (
-                  <Typography
-                    key={label}
-                    variant="subtitle1"
-                    onClick={() => handleNavClick(label)}
-                    sx={{
-                      fontWeight: 500,
-                      color: '#676b74ff',
-                      textTransform: 'lowercase',
-                      fontSize: { xs: '0.75rem', sm: '1rem' },
-                      cursor: 'pointer',
-                    }}
-                  >
-                    {label}
-                  </Typography>
+                  <Box component="li" key={label}>
+                    <Typography component="a" href={label === 'visitors' ? '/visitors' : `/#${label}`} variant="h5" onClick={(event) => { event.preventDefault(); handleNavClick(label); }} sx={{ color: '#676b74ff', textTransform: 'lowercase', cursor: 'pointer', textDecoration: 'none' }}>
+                      {label}
+                    </Typography>
+                  </Box>
                 ))}
-                <Box
-                  component="a"
-                  href="https://github.com/mariamauco"
-                  target="_blank"
-                  rel="noreferrer"
-                  sx={{ display: 'inline-flex', alignItems: 'center' }}
-                >
-                  <SiGithub color={`${theme.palette.primary.secondary}`} />
-                </Box>
-                <Box
-                  component="a"
-                  href="https://www.linkedin.com/in/mariamauco/"
-                  target="_blank"
-                  rel="noreferrer"
-                  sx={{ display: 'inline-flex', alignItems: 'center' }}
-                >
-                  <LinkedInIcon/>
-                </Box>
+                <Box component="li"><Box component="a" aria-label="GitHub" href="https://github.com/mariamauco" target="_blank" rel="noreferrer" sx={{ display: 'inline-flex', alignItems: 'center' }}><SiGithub color={`${theme.palette.primary.secondary}`} /></Box></Box>
+                <Box component="li"><Box component="a" aria-label="LinkedIn" href="https://www.linkedin.com/in/mariamauco/" target="_blank" rel="noreferrer" sx={{ display: 'inline-flex', alignItems: 'center' }}><LinkedInIcon/></Box></Box>
               </>
             ) : (
-                <Box
-                  onClick={() => setOpenMenu((previous) => !previous)}
-                  sx={{ display: 'inline-flex', alignItems: 'center', cursor: 'pointer' }}
-                >
-                  <MenuIcon color={`${theme.palette.primary.secondary}`} />
-                </Box>
+                <Box component="li"><Typography component="a" href="#menu" aria-label={openMenu ? 'Close menu' : 'Open menu'} aria-expanded={openMenu} onClick={(event) => { event.preventDefault(); setOpenMenu((previous) => !previous); }} sx={{ display: 'inline-flex', alignItems: 'center', color: 'primary.secondary', cursor: 'pointer' }}><MenuIcon color={`${theme.palette.primary.secondary}`} /></Typography></Box>
             )}
           </Box>
-
-          {/* open menu if clicked 
-          <Box
-            sx={{
-              height: 60,
-              borderRadius: 3,
-              boxShadow: '0 6px 12px rgba(136.24, 162.24, 143.60, 0.25)',
-              background: 'radial-gradient(ellipse 50.00% 50.00% at 50.00% 50.00%, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0.80) 100%)',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'space-between',
-              px: 2.5,
-              position: 'relative',
-              overflow: 'hidden',
-            }}
-          ></Box>
-      */}
           
         </Box>
       </Box>
@@ -321,34 +266,10 @@ export default function NavBar({ onMenuSpacerChange }) {
         <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1, mt:6.5 }}></Box> 
         
         {/* menu links */}
-        <Box sx={{ display: 'flex', flexDirection: 'column', alignItems:'center', gap: 1 }}>
+        <Box component="ul" sx={{ display: 'flex', flexDirection: 'column', alignItems:'center', gap: 1, listStyle: 'none', p: 0, m: 0 }}>
           {links.map((label, index) => (
-            <Box
-              key={label}
-              onClick={() => {
-                setOpenMenu(false);
-                handleNavClick(label);
-              }}
-              sx={{
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'space-between',
-                py: 1,
-                px: 1.5,
-                borderRadius: 2,
-                cursor: 'pointer',
-                borderBottom: index !== links.length - 1 ? '1px solid rgba(103, 107, 116, 0.12)' : 'none',
-              }}
-            >
-              <Typography
-                variant="subtitle1"
-                sx={{
-                  fontWeight: 500,
-                  color: '#676b74ff',
-                  textTransform: 'lowercase',
-                  fontSize: '1rem',
-                }}
-              >
+            <Box component="li" key={label} sx={{ py: 1, px: 1.5, borderRadius: 2, borderBottom: index !== links.length - 1 ? '1px solid rgba(103, 107, 116, 0.12)' : 'none' }}>
+              <Typography component="a" href={label === 'visitors' ? '/visitors' : `/#${label}`} variant="h5" onClick={(event) => { event.preventDefault(); setOpenMenu(false); handleNavClick(label); }} sx={{ color: '#676b74ff', textTransform: 'lowercase', textDecoration: 'none' }}>
                 {label}
               </Typography>
             </Box>

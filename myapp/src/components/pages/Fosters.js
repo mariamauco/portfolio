@@ -33,11 +33,7 @@ export default function Fosters() {
         }}
         >        
             <Box sx={{background:'#ebebeb62',borderRadius:2,border: "1px solid #bababaff", justifyItems:'center', justifyContent:'center', p:3, mt:'150px'}}>
-                <Typography variant="h3" sx={{ 
-                    fontFamily:'Fira Code, monospace',
-                    fontWeight: 400,
-                    fontSize: '20px',
-                    lineHeight: '48px',
+                <Typography variant="h4" sx={{ 
                     color: `${theme.palette.text.primary}`,
                     textAlign: { xs: 'center', md: 'center' },
                 }}>in progress..</Typography>
