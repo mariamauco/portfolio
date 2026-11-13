@@ -52,7 +52,7 @@ export default function Home() {
       <Experiences/>
       
       {/* PROJECTS */}
-      <Projects sx={{margin:'10px'}}/>
+      <Projects/>
 
       {/* FOOTER */}
       <Footer/>
